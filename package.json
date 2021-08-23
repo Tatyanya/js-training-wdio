@@ -1,7 +1,11 @@
 {
     "version": "0.0.1",
     "scripts": {
-        "test-onl": "npx wdio wdio.conf.js",
+        "test-onl": "npx wdio wdio.conf.js --spec example",
+        "test-selector": "npx wdio wdio.conf.js --spec selector",
+        "test-po": "npx wdio wdio.conf.js --spec po",
+
+
         "allure": "allure generate allure-results --clean && allure open"
     },
     "dependencies": {
