@@ -30,14 +30,11 @@ describe('todo list', async () => {
         const addTodo = await $('form input[type=text]');
         const addButton = await $('[value="add"]');
         await addTodo.setValue('write a test');
-
         await addButton.click();
         await browser.pause(3000)
-
+        // await browser.waitUntil(() => { return ($$('[module=todoApp] label')).map(el => el.getText()).includes('write a test') })
         todoList = await $$('[module=todoApp] label');
-
         expect(todoList).toBeElementsArrayOfSize(3);
-
         expect(await (await todoList[2].$('span')).getText()).toHaveText('write a test');
     });
 });

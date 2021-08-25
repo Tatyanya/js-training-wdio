@@ -7,13 +7,14 @@ beforeEach(async () => {
 
 });
 before(async () => {
+    await browser.maximizeWindow();
 
-    await browser.url(`https://www.onliner.by/`);
+    await MainPage.open("/");
 });
 describe('Main menu link', () => {
 
     const tests = [
-        { ind: 0, expected: 'Каталог Onliner', url: "https://catalog.onliner.by/" },
+        { ind: 0, expected: 'Каталог Onlíner', url: "https://catalog.onliner.by/" },
         { ind: 1, expected: 'Onliner', url: "https://www.onliner.by/" },
         { ind: 2, expected: 'Купить авто в Беларуси - Автобарахолка Onliner', url: "https://ab.onliner.by/" },
         { ind: 3, expected: 'Купить квартиру в Минске', url: "https://r.onliner.by/pk/" },
@@ -24,7 +25,7 @@ describe('Main menu link', () => {
     tests.forEach(({ ind, expected, url }) => {
         it(`can open main menu link and check title is ${expected} `, async () => {
 
-            await MainPage.openMainMenuByIndex( ind);
+            await MainPage.openMainMenuByIndex(ind);
         });
         it(`can check title is ${expected} `, async () => {
 
@@ -34,21 +35,18 @@ describe('Main menu link', () => {
 
         it(`can check url is ${url} `, async () => {
 
-            await expect(browser).toHaveUrl(
+            await expect(browser).toHaveUrlContaining(
                 url);
 
         });
     });
-
-
 
 });
 
 describe('Check on main page', () => {
 
     before(async () => {
-
-        await browser.url(`https://www.onliner.by/`);
+        await MainPage.open(`/`);
     });
     it('can check footer copy text', async () => {
 
@@ -64,25 +62,25 @@ describe('Check on main page', () => {
 
         await expect(MainPage.searchInput).toHaveValue(
             'test');
-        await browser.setTimeout({ 'implicit': 20000 })
-      await  expect(MainPage.searchFrame).toExist()
 
-        await browser.switchToFrame(0);            
-            // });
-            // it('can switch focus to iFrame', function () {
-            await MainPage.openSearchResultByIndex(0);
+    });
 
-            // await browser.setTimeout( 20000 )
-            await expect(MainPage.searchResultName).toBeExisting();
+    it('can open search result', async () => {
 
+        await expect(MainPage.searchFrame).toExist();
+        await browser.switchToFrame(await MainPage.searchFrame);
+        await expect(await MainPage.searchResult).toBeDisplayed();
+        await MainPage.openSearchResultByIndex(1);
+
+        await expect(MainPage.searchResultName).toBeExisting();
 
     });
 });
 
-describe.skip('My Login application', () => {
+describe('Check Login application', () => {
     before(async () => {
 
-        await browser.url(`https://www.onliner.by/`);
+        await browser.url(`/`);
     });
     it('can see login button', async () => {
 
@@ -92,7 +90,7 @@ describe.skip('My Login application', () => {
     it('can login with valid credentials', async () => {
 
         await LoginPage.login('testwdio', 'testwdio');
-        await expect(SecurePage.profile).toBeExisting();
+        await expect(SecurePage.profle).toBeExisting();
 
     });
 

@@ -11,21 +11,20 @@ class MainPage extends Page {
     get searchInput() { return $('.fast-search__input') }
     get mainBarLinks() { return $$('.b-top-navigation>ul:nth-child(1)>li') }
     get footerCopy() { return $('.footer-style__copy') }
-    get searchFrame() {    return $('iframe.modal-iframe'  )
-   }
-    get searchResult() { return $$( '.search__content-wrapper .search__results>*.search__result a') }
+    get searchFrame() { return $('iframe.modal-iframe') }
+    get searchResult() { return $$('.search__content-wrapper .search__results>*.search__result') }
 
-   get searchResultName(){return $('div.catalog-mastheadz')}
+    get searchResultName() { return $('div.catalog-masthead') }
     async typeTextInSearchField(text) {
         await this.searchInput.setValue(text);
 
     }
-    async openSearchResultByIndex( index) {
+    async openSearchResultByIndex(index) {
         await this.searchResult[index].click();
 
     }
 
-    async openMainMenuByIndex( index) {
+    async openMainMenuByIndex(index) {
         await this.mainBarLinks[index].click();
 
     }
