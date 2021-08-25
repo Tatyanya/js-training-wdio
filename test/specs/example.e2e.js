@@ -90,7 +90,7 @@ describe('Check Login application', () => {
     it('can login with valid credentials', async () => {
 
         await LoginPage.login('testwdio', 'testwdio');
-        await expect(SecurePage.profle).toBeExisting();
+        await expect(SecurePage.profile).toBeExisting();
 
     });
 
