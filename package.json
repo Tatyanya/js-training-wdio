@@ -9,7 +9,8 @@
         "allure": "allure generate allure-results --clean && allure open"
     },
     "dependencies": {
-        "@wdio/cli": "^7.10.0"
+        "@wdio/cli": "^7.10.0",
+        "@wdio/spec-reporter": "^6.3.6"
     },
     "devDependencies": {
         "@wdio/allure-reporter": "^7.10.0",
